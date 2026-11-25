@@ -1,0 +1,103 @@
+/* ==========================================================================
+   urbia · brand book — capa TECH (lenguaje de urbia-javeriana)
+   Fondo nocturno, retícula técnica, etiquetas mono tipo HUD, esquinas lima,
+   logo y todos los íconos en cromo 3D (cromo.js).
+   Las muestras de color y las aplicaciones conservan sus colores reales.
+   ========================================================================== */
+:root {
+  --noche: #08090C; --carbon: #171916; --marfil: #F5F3EB; --lime: #C7FF27; --gris: #898D84;
+  --l1: rgba(245, 243, 235, .08); --l2: rgba(245, 243, 235, .18); --ll: rgba(199, 255, 39, .4);
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+html { background: var(--noche); }
+body { background: var(--noche) !important; color: var(--marfil) !important; }
+
+/* retícula + escaneo */
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(199, 255, 39, .45) 1px, transparent 1.5px) -1px -1px / 192px 192px,
+    linear-gradient(var(--l1) 1px, transparent 1px) 0 0 / 100% 96px,
+    linear-gradient(90deg, var(--l1) 1px, transparent 1px) 0 0 / 96px 100%; opacity: .6; }
+body::after { content: ''; position: fixed; left: 0; right: 0; top: 0; height: 140px; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(199, 255, 39, .02) 70%, rgba(199, 255, 39, .07) 99%, transparent);
+  animation: tech-scan 9s linear infinite; }
+@keyframes tech-scan { from { transform: translateY(-160px); } to { transform: translateY(100vh); } }
+.main, #biblioteca-urbia { position: relative; z-index: 2; }
+
+/* marco fijo con esquinas abiertas ⌝ */
+.tech-marco { position: fixed; inset: 12px 12px 12px 247px; z-index: 40; pointer-events: none; }
+.tech-marco i { position: absolute; width: 22px; height: 22px; border: 0 solid var(--lime); }
+.tech-marco i:nth-child(1) { left: 0; top: 0; border-width: 2px 0 0 2px; }
+.tech-marco i:nth-child(2) { right: 0; top: 0; border-width: 2px 2px 0 0; }
+.tech-marco i:nth-child(3) { left: 0; bottom: 0; border-width: 0 0 2px 2px; }
+.tech-marco i:nth-child(4) { right: 0; bottom: 0; border-width: 0 2px 2px 0; }
+.tech-marco span { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); font: 9px var(--mono); letter-spacing: .22em; color: rgba(137, 141, 132, .7); text-transform: uppercase; white-space: nowrap; }
+@media (max-width: 900px) { .tech-marco { inset: 8px; } .tech-marco span { display: none; } }
+
+/* barra lateral: consola */
+.sidebar { background: rgba(8, 9, 12, .92) !important; border-right: 1px solid var(--l2); backdrop-filter: blur(14px); }
+.side-kicker, .side-bottom, .nav a { font-family: var(--mono) !important; letter-spacing: .1em; }
+.nav a { border-radius: 0 !important; font-size: 11px !important; border-left: 1px solid transparent; }
+.nav a:hover, .nav a.active { background: rgba(199, 255, 39, .06) !important; border-left-color: var(--lime); }
+.mobile-bar { background: rgba(8, 9, 12, .94) !important; border-bottom: 1px solid var(--l2); }
+
+/* secciones */
+.section, .section.dark, #paleta-expandida, #biblioteca-urbia { background: transparent !important; color: var(--marfil) !important; border-bottom: 1px solid var(--l1) !important; }
+.section.dark { background: rgba(23, 25, 22, .55) !important; }
+.sub, .note, .dark .sub { color: #a6a9a0 !important; }
+.eyebrow, .tile-label, .tag, .spec b, .hero-foot, #biblioteca-urbia > div > p:first-child { font-family: var(--mono) !important; font-weight: 500 !important; letter-spacing: .18em !important; text-transform: uppercase; }
+.eyebrow:before { height: 2px !important; background: var(--lime) !important; box-shadow: 0 0 10px rgba(199, 255, 39, .8); }
+h2 span[style*="#779700"], h2 span[style*="#9ac919"] { color: var(--lime) !important; }
+.spec { border-color: var(--l2) !important; }
+.spec span { font-family: var(--mono); font-size: 12px; color: #c9ccc2; }
+
+/* portada: noche + logo cromado 3D */
+.hero { background: radial-gradient(ellipse 60% 55% at 62% 48%, rgba(169, 155, 203, .14), transparent 70%), transparent !important; color: var(--marfil); }
+.hero:before, .hero:after { border-color: rgba(199, 255, 39, .14) !important; }
+.hero .eyebrow:before { background: var(--lime) !important; }
+.hero h1 { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.hero .lead { position: relative; z-index: 2; margin-top: 52vh; }
+.hero-foot { border-top-color: var(--l2) !important; color: var(--gris); }
+.hero > a[href*="parrilla"] { border-radius: 0 !important; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); font-family: var(--mono); font-size: 12px; letter-spacing: .08em; position: relative; z-index: 3; align-self: flex-start; }
+canvas.logo3d { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+#urbia-scroll-hint { font-family: var(--mono) !important; }
+#urbia-scroll-hint:after { border-radius: 0 !important; border-color: var(--lime) !important; color: var(--lime); }
+
+/* tiles y pruebas de logo */
+.tile, .tile.cream, .rule, [style*="background:#fff"], .logo-stage[style*="#fff"] { background: rgba(23, 25, 22, .6) !important; border: 1px solid var(--l2) !important; color: var(--marfil) !important; border-radius: 0 !important; }
+.tile.dark { background: rgba(8, 9, 12, .8) !important; }
+.tile.lime { background: var(--lime) !important; color: var(--carbon) !important; border-color: var(--lime) !important; }
+.tile[style*="#30342e"] { background: rgba(8, 9, 12, .7) !important; }
+.tile:hover { box-shadow: 0 0 0 1px var(--ll), 0 24px 50px rgba(0, 0, 0, .5) !important; }
+.wordmark { color: var(--marfil); }
+.tile.lime .wordmark, .wordmark.on-lime { color: var(--carbon) !important; }
+.rule.bad { opacity: .55; }
+.rule .center[style*="var(--black)"] { background: var(--noche) !important; border: 1px solid var(--l1); }
+.logo-stage[style*="var(--lime)"] { background: radial-gradient(circle at 50% 45%, rgba(199, 255, 39, .16), rgba(8, 9, 12, .9) 70%) !important; border: 1px solid var(--ll); }
+
+/* botones técnicos */
+.btn, #biblioteca-urbia button, .urbia-color button { border-radius: 0 !important; font-family: var(--mono) !important; letter-spacing: .1em; }
+.btn { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+#biblioteca-urbia button.svg-btn, #biblioteca-urbia button.png-btn { border-color: var(--l2) !important; color: var(--marfil) !important; border-radius: 0 !important; font-size: 10px !important; }
+#biblioteca-urbia button.png-btn { border-color: var(--ll) !important; color: var(--lime) !important; }
+#biblioteca-urbia button:hover { background: var(--lime) !important; color: var(--carbon) !important; }
+#biblioteca-urbia button[onclick="urbiaAll()"] { background: var(--lime) !important; color: var(--carbon) !important; }
+#biblioteca-urbia input, #biblioteca-urbia select { background: rgba(23, 25, 22, .8) !important; color: var(--marfil) !important; border: 1px solid var(--l2) !important; border-radius: 0 !important; font-family: var(--mono); }
+
+/* biblioteca: tarjetas de íconos cromados */
+#urbia-icons > div, #urbia-doodles > div, #urbia-logos > div { background: rgba(23, 25, 22, .62) !important; border: 1px solid var(--l1) !important; border-radius: 0 !important; color: var(--marfil); position: relative; transition: border-color .3s, transform .3s; }
+#urbia-icons > div:hover, #urbia-doodles > div:hover { border-color: var(--ll) !important; transform: translateY(-3px); }
+#urbia-icons > div::before, #urbia-doodles > div::before { content: ''; position: absolute; left: -1px; top: -1px; width: 10px; height: 10px; border: solid var(--lime); border-width: 1px 0 0 1px; }
+#urbia-icons > div > div:first-child { height: 84px !important; }
+#urbia-icons strong { font-family: var(--mono); font-weight: 500; font-size: 11px !important; letter-spacing: .08em; text-transform: uppercase; color: #c9ccc2; }
+canvas.cromo { display: block; margin: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
+#simbolo canvas.cromo { filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .55)); }
+
+/* contador y progreso */
+#urbia-counter { border-radius: 0 !important; font-family: var(--mono) !important; background: rgba(8, 9, 12, .9) !important; border-color: var(--ll) !important; }
+.footer { background: var(--lime) !important; color: var(--carbon); position: relative; z-index: 2; }
+@media (prefers-reduced-motion: reduce) { body::after { display: none; } }
+@media print { body::before, body::after, .tech-marco, canvas.logo3d { display: none !important; } }
+/* piezas de color real: texto carbón salvo que la pieza declare otro */
+.swatch, .mock-social, .urbia-post, .urbia-color { color: var(--carbon); }
+.swatch .btn { color: inherit; }
