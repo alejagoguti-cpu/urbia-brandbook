@@ -200,6 +200,7 @@ function iniciar() {
     cromar(svg, { clave: 'doodle' + i, tam: 190 });
     const png = d.querySelector('.png-btn'); if (png && s) { png.textContent = 'PNG 3D'; png.onclick = () => pngCromado(s, 'urbia-doodle-cromo-' + i); }
   });
+  document.querySelectorAll('svg[data-cromo]').forEach((svg, i) => cromar(svg, { lima: svg.dataset.cromo === 'lima', clave: 'demo' + i, tam: +svg.getAttribute('width') || 90 }));
   document.querySelectorAll('#simbolo svg').forEach((svg, i) => cromar(svg, { lima: i > 0, clave: 'simbolo' + i, tam: i ? 120 : 260 }));
   requestAnimationFrame(bucle);
 }
